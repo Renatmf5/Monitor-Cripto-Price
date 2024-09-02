@@ -9,7 +9,9 @@ async function getParameter(paramName) {
       WithDecryption: false // Use true se o parâmetro estiver criptografado
     };
 
-    const response = await ssm.getParameter(params).promise();
+    const response = await // The `.promise()` call might be on an JS SDK v2 client API.
+    // If yes, please remove .promise(). If not, remove this comment.
+    ssm.getParameter(params);
     return response.Parameter.Value;
   } catch (error) {
     console.error(`Erro ao buscar o parâmetro ${paramName}:`, error.message);
@@ -25,7 +27,9 @@ async function getParameters(paramNames) {
       WithDecryption: false // Use true se os parâmetros estiverem criptografados
     };
 
-    const response = await ssm.getParameters(params).promise();
+    const response = await // The `.promise()` call might be on an JS SDK v2 client API.
+    // If yes, please remove .promise(). If not, remove this comment.
+    ssm.getParameters(params);
     const values = {};
     response.Parameters.forEach(param => {
       values[param.Name] = param.Value;
