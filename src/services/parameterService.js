@@ -6,7 +6,7 @@ async function getParameter(paramName) {
   try {
     const params = {
       Name: paramName,
-      WithDecryption: true // Use true se o parâmetro estiver criptografado
+      WithDecryption: false // Use true se o parâmetro estiver criptografado
     };
 
     const response = await ssm.getParameter(params).promise();
@@ -22,7 +22,7 @@ async function getParameters(paramNames) {
   try {
     const params = {
       Names: paramNames,
-      WithDecryption: true // Use true se os parâmetros estiverem criptografados
+      WithDecryption: false // Use true se os parâmetros estiverem criptografados
     };
 
     const response = await ssm.getParameters(params).promise();
