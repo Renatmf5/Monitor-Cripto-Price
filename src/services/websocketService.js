@@ -1,8 +1,10 @@
 // src/services/websocketService.js
 const WebSocket = require('ws');
+const { getParameter } = require('./parameterService');
 
 function connect(processMessage) {
-  const ws = new WebSocket(process.env.STREAM_URL_MEXC);
+  const streamUrl = await getParameter('STREAM_URL_MEXC');
+  const ws = new WebSocket(streamUrl);
 
   ws.on('open', () => {
     console.log('Conexão aberta com o WebSocket');

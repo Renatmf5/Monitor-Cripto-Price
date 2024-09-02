@@ -5,6 +5,9 @@ const bot = require('./services/telegramService');
 const fs = require('fs');
 const path = require('path');
 const configPath = path.join(__dirname, 'config.json');
+const { getParameter } = require('./services/parameterService');
+
+
 let config = require('./config.json');
 
 let listPrice = [];
@@ -26,8 +29,9 @@ async function addPrice(datetime) {
 }
 
 function checkCofLimits(cof) {
+  const TelegramChatId = getParameter('TELEGRAM_CHAT_ID');
   if (cof < minLimit || cof > maxLimit) {
-    bot.sendMessage(process.env.TELEGRAM_CHAT_ID, `⚠️ Alerta: Cof fora dos limites! Valor atual: ${cof}`);
+    bot.sendMessage(TelegramChatId, `⚠️ Alerta: Cof fora dos limites! Valor atual: ${cof}`);
   }
 }
 

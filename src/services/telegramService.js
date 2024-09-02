@@ -1,4 +1,8 @@
+//src/services/telegramService.js
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
+const { getParameter } = require('./parameterService');
+
+const TelegramToken = getParameter('TELEGRAM_BOT_TOKEN');
+const bot = new TelegramBot(TelegramToken, { polling: true });
 
 module.exports = bot;
