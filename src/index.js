@@ -8,7 +8,6 @@ const { getParameter } = require('./services/parameterService');
 
 let config = require('./config.json');
 
-let listPrice = [];
 let mexcPriceORAIBuffer = undefined;
 let mexcPriceOCHBuffer = undefined;
 let minLimit = config.minLimit;
@@ -25,8 +24,7 @@ async function init() {
 
     async function addPrice(datetime) {
       const cof = mexcPriceORAIBuffer / mexcPriceOCHBuffer;
-      listPrice.push({ datetime, ORAI: mexcPriceORAIBuffer, OCH: mexcPriceOCHBuffer, Cof: cof });
-      console.log(`[${datetime}] Preço atual de ORAI: ${mexcPriceORAIBuffer} e OCH: ${mexcPriceOCHBuffer} e Cof: ${cof}`);
+      //console.log(`[${datetime}] Preço atual de ORAI: ${mexcPriceORAIBuffer} e OCH: ${mexcPriceOCHBuffer} e Cof: ${cof}`);
       checkCofLimits(cof);
     }
 
@@ -40,9 +38,9 @@ async function init() {
     function updateConfigFile() {
       fs.writeFile(configPath, JSON.stringify(config, null, 2), (err) => {
         if (err) {
-          console.error('Erro ao atualizar o arquivo config.json:', err);
+          //console.error('Erro ao atualizar o arquivo config.json:', err);
         } else {
-          console.log('Configurações atualizadas com sucesso no config.json');
+          //console.log('Configurações atualizadas com sucesso no config.json');
         }
       });
     }
@@ -87,7 +85,7 @@ async function init() {
     connect(processMessage);
 
   } catch (error) {
-    console.error('Erro durante a inicialização do bot:', error);
+    //console.error('Erro durante a inicialização do bot:', error);
   }
 }
 

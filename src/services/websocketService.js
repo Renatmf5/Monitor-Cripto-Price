@@ -7,7 +7,7 @@ async function connect(processMessage) {
     const ws = new WebSocket(streamUrl);
 
     ws.on('open', () => {
-      console.log('Conexão aberta com o WebSocket');
+      //console.log('Conexão aberta com o WebSocket');
       ws.send(JSON.stringify({
         method: "SUBSCRIPTION",
         params: [
@@ -31,20 +31,20 @@ async function connect(processMessage) {
           processMessage('OCHUSDT', newPrice);
         }
       } catch (error) {
-        console.error('Erro ao processar mensagem:', error.message);
+        //console.error('Erro ao processar mensagem:', error.message);
       }
     });
 
     ws.on('close', (code) => {
-      console.log(`Conexão fechada com o código ${code}. Reconectando em 5 segundos...`);
+      //console.log(`Conexão fechada com o código ${code}. Reconectando em 5 segundos...`);
       setTimeout(() => connect(processMessage), 5000);
     });
 
     ws.on('error', (err) => {
-      console.error('Erro no WebSocket:', err.message);
+      //console.error('Erro no WebSocket:', err.message);
     });
   } catch (error) {
-    console.error('Erro ao obter a URL do WebSocket:', error);
+    //console.error('Erro ao obter a URL do WebSocket:', error);
   }
 }
 
