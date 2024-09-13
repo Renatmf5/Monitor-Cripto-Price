@@ -8,7 +8,7 @@ async function createBot() {
     return bot;
   } catch (error) {
     console.error('Erro ao obter o token do Telegram:', error);
-    throw error; // Re-lança o erro para ser tratado no chamador
+    throw error; // Re-lança o erro para ser tratado no chamadorr
   }
 }
 
